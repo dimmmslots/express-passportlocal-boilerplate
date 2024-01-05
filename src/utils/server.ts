@@ -10,10 +10,14 @@ import errorHandler from "../middlewares/error.middleware";
 import { TUser } from "../@types/user.type";
 import helmet from "helmet";
 import "dotenv/config";
+import cookieParser from "cookie-parser";
+import csurf from "csurf";
+import authRoutes from "../routes/auth.route";
 
 function createServer() {
   const app = express();
   app.use(helmet());
+  app.use(cookieParser());
   app.use(express.json());
   app.use(cors());
   app.use(express.urlencoded({ extended: true }));
@@ -32,6 +36,7 @@ function createServer() {
   );
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(csurf({ cookie: true }));
   passport.use(
     "local",
     new LocalStrategy({ usernameField: "email" }, (email, password, cb) => {
@@ -52,6 +57,7 @@ function createServer() {
     cb(null, obj);
   });
 
+  app.use("/api/auth", authRoutes);
   app.use(errorHandler);
   return app;
 }
