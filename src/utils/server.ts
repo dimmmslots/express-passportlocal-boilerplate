@@ -25,6 +25,7 @@ function createServer() {
     session({
       store: redisStore,
       secret: process.env.SESSION_SECRET!,
+      proxy: true,
       resave: false,
       cookie: {
         maxAge: 604800,
