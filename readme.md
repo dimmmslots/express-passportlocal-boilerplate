@@ -30,13 +30,13 @@
 - ### Clone Repository
 
 ```bash
-$ git clone https://github.com/dimmmslots/express-passport-local-boilerplate
+$ git clone https://github.com/dimmmslots/express-passportlocal-boilerplate
 ```
 
 - ### Go inside the folder
 
 ```bash
-$ cd express-passport-local-boilerplate
+$ cd express-passportlocal-boilerplate
 ```
 
 - ### Install packages
